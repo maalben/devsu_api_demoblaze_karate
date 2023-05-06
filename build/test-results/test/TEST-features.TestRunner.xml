@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="features.TestRunner" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-05-06T17:01:35" hostname="MBPdeSopmicro01-5" time="9.161">
+  <properties/>
+  <testcase name="testParallel" classname="features.TestRunner" time="9.161"/>
+  <system-out><![CDATA[---------------------------------------------------------
+feature: classpath:features/singin.feature
+scenarios:  2 | passed:  2 | failed:  0 | time: 3.0795
+---------------------------------------------------------
+
+---------------------------------------------------------
+feature: classpath:features/singup.feature
+scenarios:  2 | passed:  2 | failed:  0 | time: 3.0816
+---------------------------------------------------------
+
+Karate version: 1.0.1
+======================================================
+elapsed:   7.36 | threads:    5 | thread time: 6.16 
+features:     2 | skipped:    0 | efficiency: 0.17
+scenarios:    4 | passed:     4 | failed: 0
+======================================================
+
+HTML report: (paste into browser to view) | Karate version: 1.0.1
+file:///Users/mario.benitez/github/Challenges%20Devsu/devsu_api_demoblaze_karate/build/karate-reports/karate-summary.html
+===================================================================
+
+]]></system-out>
+  <system-err><![CDATA[SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/Users/mario.benitez/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-simple/1.7.30/e606eac955f55ecf1d8edcccba04eb8ac98088dd/slf4j-simple-1.7.30.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/mario.benitez/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.2.3/7c4f3c474fb2c041d8028740440937705ebb473a/logback-classic-1.2.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.SimpleLoggerFactory]
+[Test worker] INFO com.intuit.karate.Runner - karate.env is: ''
+[pool-1-thread-3] INFO com.intuit.karate - [print] 468KDTSG32 
+[pool-1-thread-4] INFO com.intuit.karate - [print] {
+  "errorMessage": "This user already exist."
+}
+ 
+[pool-1-thread-2] INFO com.intuit.karate - [print] {
+  "errorMessage": "Wrong password."
+}
+ 
+[pool-1-thread-1] INFO com.intuit.karate - [print] "Auth_token: aG9yYWNpb3NzMTE2ODM5OTI="
+ 
+[pool-1-thread-3] INFO com.intuit.karate - [print] ""
+ 
+[pool-2-thread-1] INFO com.intuit.karate.Suite - <<pass>> feature 1 of 2 (1 remaining) classpath:features/singin.feature
+[pool-2-thread-1] INFO com.intuit.karate.Suite - <<pass>> feature 2 of 2 (0 remaining) classpath:features/singup.feature
+ERROR StatusLogger No log4j2 configuration file found. Using default configuration: logging only errors to the console.
+]]></system-err>
+</testsuite>
