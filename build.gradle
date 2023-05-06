@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+sourceSets {
+    test {
+        java {
+            // Excluding UIRunner files as these require the javafx libraries
+            // which are not shipped with OpenJDK. These UIRunner classes are
+            // classes that allow developers to run/debug karate tests via a UI
+            // and as such are not required for headless runs on jenkins server
+            // but can run happily via IDE of the developer without needed to be
+            // compiled by gradle.
+            srcDir file('src/test/java')
+            exclude '**/*UiRunner*.java'
+        }
+        resources {
+            // Using recommended karate project layout where karate feature files
+            // and associated javascript resources sit in same /test/java folders
+            // as their java counterparts.
+            srcDir file('src/test/java')
+            exclude '**/*.java'
+        }
+    }
+}
+
+test {
+    // When running the test task, only run the base Test class which runs all cucumber
+    // tests in parallel.
+    include '**/*TestRunner*'
+    // Pull karate options into the runtime
+    systemProperty "karate.options", System.properties.getProperty("karate.options")
+    // Pull karate options into the JVM
+    systemProperty "karate.env", System.properties.getProperty("karate.env")
+    // Ensure tests are always run
+    outputs.upToDateWhen { false }
+    // attach debugger
+    if (System.getProperty('debug', 'false') == 'true') {
+        jvmArgs '-Xdebug', '-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9009'
+    }
+}
+
+dependencies {
+    implementation 'org.slf4j:slf4j-api:1.7.30'
+    implementation 'org.slf4j:slf4j-simple:1.7.30'
+    implementation group: 'com.aventstack', name: 'extentreports', version: '5.0.4'
+    implementation group: 'com.intuit.karate', name: 'karate-core', version: '1.0.1'
+    implementation group: 'com.intuit.karate', name: 'karate-junit4', version: '0.9.2'
+    implementation group: 'net.masterthought', name: 'cucumber-reporting', version: '3.8.0'
+}
